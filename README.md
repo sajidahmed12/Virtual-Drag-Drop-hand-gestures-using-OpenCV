@@ -13,10 +13,9 @@
 
 Development.... Going on.
 
+<p align="center">
+  <img width="1000" height="612" src=assets/test.JPG>
+</p>
 
-keep in touch 
-
-
- 
 
 </hr>
