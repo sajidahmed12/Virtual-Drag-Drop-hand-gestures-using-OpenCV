@@ -56,8 +56,7 @@ while(True):
 
     #     cvzone.cornerRect(img,(cx-w//2, cy - h // 2, w, h), 20, rt = 0)
    
-   
-# trasperant box
+# transparent box
 #  
     imgNew = np.zeros_like(img, np.uint8)
 
