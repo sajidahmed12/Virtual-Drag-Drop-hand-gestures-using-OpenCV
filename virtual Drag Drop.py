@@ -1,8 +1,10 @@
 import cv2
 import cvzone
+import time
 import numpy as np
 from cvzone.HandTrackingModule import HandDetector
 
+pTime = 0
 cap = cv2.VideoCapture(0)
 #address = "http://192.168.0.122:8080/video"
 #cap.open(address)
@@ -40,6 +42,10 @@ while(True):
     img =cv2.flip(img, 1) 
     img = detector.findHands(img)
     lmList, _ = detector.findPosition(img)
+
+    cTime = time.time()
+    fps = 1/(cTime - pTime)
+    pTime = cTime
     
     if lmList:
         l, _, _ = detector.findDistance(8, 12, img, draw=False)
@@ -71,6 +77,7 @@ while(True):
     mask = imgNew.astype(bool)
     out[mask] = cv2.addWeighted(img, alpha, imgNew, 1- alpha, 0)[mask]
 
+    cv2.putText(out, f'FPS: {int(fps)}/sec', (40,50), cv2.FONT_HERSHEY_COMPLEX, 1 , (0, 0, 255),3)
     cv2.imshow('Image', out)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
