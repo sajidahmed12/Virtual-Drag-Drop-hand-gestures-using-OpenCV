@@ -1,5 +1,6 @@
 import cv2
 import cvzone
+import numpy as np
 from cvzone.HandTrackingModule import HandDetector
 
 cap = cv2.VideoCapture(0)
@@ -41,18 +42,37 @@ while(True):
     lmList, _ = detector.findPosition(img)
     
     if lmList:
-        l, _, _ = detector.findDistance(8, 12, img)
+        l, _, _ = detector.findDistance(8, 12, img, draw=False)
         if(l<30):
             cursor =  lmList[8]    # x,y of fingertip
             for rect in rectlist:
                 rect.update(cursor)
 
+# solid rectangles icon
+    # for rect in rectlist:
+    #     cx, cy = rect.posCenter
+    #     w, h = rect.size
+    #     cv2.rectangle(img, (cx-w//2, cy-h//2), (cx+w//2,cy+h//2), colorRec, cv2.FILLED)
+
+    #     cvzone.cornerRect(img,(cx-w//2, cy - h // 2, w, h), 20, rt = 0)
+   
+   
+# trasperant box
+#  
+    imgNew = np.zeros_like(img, np.uint8)
+
     for rect in rectlist:
         cx, cy = rect.posCenter
         w, h = rect.size
-        cv2.rectangle(img, (cx-w//2, cy-h//2), (cx+w//2,cy+h//2), colorRec, cv2.FILLED)
+        cv2.rectangle(imgNew, (cx-w//2, cy-h//2), (cx+w//2,cy+h//2), colorRec, cv2.FILLED)
 
-    cv2.imshow('Image', img)
+        cvzone.cornerRect(imgNew,(cx-w//2, cy - h // 2, w, h), 20, rt = 0)
+    out = img.copy()
+    alpha = 0.1
+    mask = imgNew.astype(bool)
+    out[mask] = cv2.addWeighted(img, alpha, imgNew, 1- alpha, 0)[mask]
+
+    cv2.imshow('Image', out)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 cap.release()
