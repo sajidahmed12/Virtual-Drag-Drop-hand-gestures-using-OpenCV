@@ -3,14 +3,14 @@ import cvzone
 from cvzone.HandTrackingModule import HandDetector
 
 cap = cv2.VideoCapture(0)
-cap.set(3, 1920)
-cap.set(4, 1080)
+cap.set(3, 1280)
+cap.set(4, 720)
 
 detector = HandDetector(detectionCon=0.8)
 colorRec = 255,255,0
 
 
-cx, cy, w, h = 60, 60, 100, 100
+cx, cy, w, h = 100, 10, 200, 200
  
 
 while(True):
