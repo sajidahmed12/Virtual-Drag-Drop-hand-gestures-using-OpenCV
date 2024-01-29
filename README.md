@@ -1,22 +1,30 @@
-# Virtual Drag Drop hand gestures testing using OpenCV 
+# Virtual Drag and Drop Hand Gestures Testing using OpenCV
 
- Image processing and AI functions. 
- [OpenCV](https://github.com/opencv/opencv) and [Mediapipe](https://github.com/google/mediapipe) libraries. 
+This project involves image processing and AI functions for detecting hand gestures and implementing virtual drag and drop functionality. It utilizes the OpenCV and Mediapipe libraries.
 
 ## Installation
 
-`pip install cvzone`
-`pip install mediapipe`
+You can install the required libraries using pip:
+
+```bash
+pip install cvzone
+pip install mediapipe
+```
 
 <hr>
 
-### 60 FPS DRAG and DROP hand gesture Detection.
+### 60 FPS Drag and Drop Hand Gesture Detection
 
-Development.... Going on.
+Development is in progress.
 
-<p align="center">
-  <img width="1000" height="612" src=assets/test.JPG>
-</p>
-
+![Test Image](assets/test.JPG)
 
 </hr>
+
+## Contribution
+
+Contributions to this project are welcome. Feel free to open issues or submit pull requests to improve the functionality or documentation.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
